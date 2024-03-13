@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import bookService from '@/app/lib/bookService'
 import RecordItem from '@/app/ui/recordItem';
+import LoadingSpinner from '@/app/ui/loadingSpinner';
 
 export default function Records() {
 
@@ -21,7 +22,7 @@ export default function Records() {
 
 	const getState = () => {
 		if (!!isLoading) {
-			return (<p>Loading...</p>);
+			return (<LoadingSpinner/>);
 		} else {
 			if (data?.error)
 				return (<p>Error: {data.error}</p>);
