@@ -8,14 +8,15 @@ class BookService {
 
 	search(query: string, startIndex: number = 0) {
 		console.log('Querying books for: ' + query);
+		this.bookResults.next({isLoading: true});
 		ajax.getJSON('http://0.0.0.0/search/?query_string=' + query + '&start_index=' + startIndex).subscribe({
 		  next: value => {
 		  	console.log(value);
-		  	this.bookResults.next(value);
+		  	this.bookResults.next({isLoading: false, ...value});
 		  },
 		  error: err => {
 		  	console.log(err);
-		  	this.bookResults.next(err.detail)
+		  	this.bookResults.next({isLoading: false, error: err?.detail || 'Something went wrong!'})
 		  }
 		});
 	}
