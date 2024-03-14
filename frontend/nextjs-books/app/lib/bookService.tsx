@@ -1,22 +1,21 @@
-import { Subject } from 'rxjs';
+import { ReplaySubject } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 import { map, catchError, of } from 'rxjs';
 
 
 class BookService {
-	bookResults: Subject = new Subject();
+	bookResults: ReplaySubject = new ReplaySubject();
 
 	search(query: string, startIndex: number = 0) {
 		console.log('Querying books for: ' + query);
 		this.bookResults.next({isLoading: true});
 		ajax.getJSON('http://0.0.0.0/search/?query_string=' + query + '&start_index=' + startIndex).subscribe({
-		  next: value => {
-		  	console.log(value);
-		  	this.bookResults.next({isLoading: false, ...value});
+		  next: results => {
+		  	this.bookResults.next({isLoading: false, ...results});
 		  },
 		  error: err => {
 		  	console.log(err);
-		  	this.bookResults.next({isLoading: false, error: err?.detail || 'Something went wrong!'})
+		  	this.bookResults.next({isLoading: false, error: err?.detail || 'Something went wrong!'});
 		  }
 		});
 	}

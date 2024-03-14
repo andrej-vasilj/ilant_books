@@ -1,10 +1,13 @@
 import { MagnifyingGlassIcon } from '@heroicons/react/24/outline';
 import { useDebouncedCallback } from 'use-debounce';
+import { useRouter } from 'next/navigation';
 import bookService from '@/app/lib/bookService';
 
 export default function Search({ placeholder }: { placeholder: string }) {
+  const router = useRouter();
 
   const handleSearch = useDebouncedCallback((term) => {
+    router.push('/');
     bookService.search(term);
   }, 300);
 

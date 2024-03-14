@@ -10,8 +10,6 @@ export default function Records() {
  
 	useEffect(() => {
 		const subscription = bookService.bookResults.subscribe((results) => {
-			console.log('REACTING');
-			console.log(results);
 			setLoading(results?.isLoading || false);
 			setData(results);
 	  });
@@ -30,8 +28,8 @@ export default function Records() {
 				return (<p>No results to display</p>);
 			else
 				return (
-					<ul role="list" class="divide-y divide-rich-green">
-			    	{data?.items.map(item => <RecordItem book={item}/>)}
+					<ul role="list" className="divide-y divide-rich-green">
+			    	{data?.items.map(item => <RecordItem key={item.id} book={item}/>)}
 		    	</ul>
 				);
 		}

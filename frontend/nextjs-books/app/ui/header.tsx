@@ -12,14 +12,15 @@ export default function Header() {
           alt="Ilant Books"
           height="200"
           width="200"
-          className="flex-none rounded max-h-32"
+          className="flex-none rounded h-14 w-auto"
         />
         <Image
           src="/tree2.png"
           alt="Tree of Life"
           height="150"
           width="130"
-          className="flex-none rounded absolute top-0 right-0"
+          className="flex-none rounded absolute top-0 right-0 h-32 w-auto"
+          priority
         />
 
       </div>
