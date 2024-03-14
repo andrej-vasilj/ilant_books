@@ -33,4 +33,5 @@ def search(query_string: str, start_index: Optional[int] = 0):
     data = r.json()
     if 'error' in data:
         raise HTTPException(status_code=data['error']['code'], detail=data['error']['message'])
+    print(data['totalItems'])
     return data

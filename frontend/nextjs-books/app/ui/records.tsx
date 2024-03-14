@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react'
-import bookService from '@/app/lib/bookService'
+import { useState, useEffect } from 'react';
+import bookService from '@/app/lib/bookService';
 import RecordItem from '@/app/ui/recordItem';
 import LoadingSpinner from '@/app/ui/loadingSpinner';
+import Pagination from '@/app/ui/pagination';
 
 export default function Records() {
 
@@ -38,6 +39,7 @@ export default function Records() {
 	return (
 		<div className="min-h-full min-w-full">
 			<div className="w-full mx-auto rounded-xl shadow-md p-5 border-2 border-rich-green bg-white">
+				<Pagination/>
 			  <div className="md:flex bg-white">
 			  	{ getState() }
 			  </div>
