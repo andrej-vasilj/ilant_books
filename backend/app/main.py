@@ -27,6 +27,11 @@ app.add_middleware(
 
 
 # End points
+
+@app.get('/')
+def health_check():
+    return True
+
 @app.get("/search/")
 def search(query_string: str, start_index: Optional[int] = 0):
     r = requests.get(f'{GOOGLE_URL}?q={query_string}&startIndex={start_index}&key={API_KEY}')

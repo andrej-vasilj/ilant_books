@@ -16,7 +16,8 @@ class BookService {
 		}
 
 		this.bookResults.next({isLoading: true});
-		ajax.getJSON('http://0.0.0.0/search/?query_string=' + query + '&start_index=' + startIndex).subscribe({
+
+		ajax.getJSON(process.env.BASE_URL + '/search/?query_string=' + query + '&start_index=' + startIndex).subscribe({
 		  next: results => {
 		  	this.bookResults.next({isLoading: false, query, startIndex, ...results});
 		  },
