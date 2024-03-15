@@ -18,6 +18,15 @@ const config: Config = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      keyframes: {
+        shrink: {
+          '0%': { transform: 'scale(1)' },
+          '100%': { transform: 'scale(0.95)' },
+        }
+      },
+      animation: {
+        shrink: 'shrink 0.1s ease-in forwards',
+      },
     },
   },
   plugins: [],

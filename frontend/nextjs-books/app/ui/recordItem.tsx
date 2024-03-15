@@ -7,7 +7,7 @@ export default function RecordItem({book}) {
 
 	return (
     <li className="flex justify-between hover:shadow-md gap-x-6 p-5" key={book.id}>
-	    <div>
+	    <div className="w-full">
 	    	<Link
 		      key={book.id}
 		      href={`/books/${book.id}`}
@@ -21,7 +21,7 @@ export default function RecordItem({book}) {
 		        className="flex-none rounded object-contain w-auto h-28"
 		      />
 		      <div className="min-w-0 flex-auto w-full">
-		      	<div className="shrink-0 flex flex-wrap justify-between">
+		      	<div className="w-full shrink-0 flex flex-wrap justify-between">
 		      		<p className="text-lg font-bold leading-6 text-gray-900">{book.volumeInfo?.title}</p>
 		      		<p className="mt-1 text-xs leading-5 text-gray-500">Published: <time dateTime="2023-01-23">{book.volumeInfo?.publishedDate}</time></p>
 		      	</div>

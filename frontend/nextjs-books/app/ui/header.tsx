@@ -6,13 +6,13 @@ import Search from '@/app/ui/search';
 export default function Header() {
   return (
     <div>
-      <div className="flex justify-between p-5 bg-dark-green">
+      <div className="flex justify-between p-5 bg-dark-green h-24">
         <Image
           src="/Logo2.svg"
           alt="Ilant Books"
           height="200"
           width="200"
-          className="flex-none rounded h-14 w-auto"
+          className="flex-none rounded h-12 w-auto hover:animate-shrink fill-mode-forwards"
         />
         <Image
           src="/tree2.png"
