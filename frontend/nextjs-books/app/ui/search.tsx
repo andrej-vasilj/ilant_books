@@ -12,7 +12,7 @@ export default function Search({ placeholder }: { placeholder: string }) {
   }, 300);
 
   return (
-    <div className="py-10 w-full">
+    <div className="py-4 w-full">
       <div className="relative flex flex-1 flex-shrink-0">
         <label htmlFor="search" className="sr-only">
           Search

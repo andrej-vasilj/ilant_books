@@ -26,9 +26,8 @@ export default function Header() {
       </div>
 
 
-      <header className="bg-grey shadow">
-        <div className="flex mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900">Dashboard</h1>
+      <header className="bg-zinc-300">
+        <div className="flex mx-auto items-center max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
           <Search placeholder="Search books..." />
         </div>
       </header>

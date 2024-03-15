@@ -64,6 +64,8 @@ export default function Pagination() {
 			    <a href="#" onClick={() => runSearch(np)} className={sharedClasses + otherPageClasses}>{np}</a>
 			  </>
 			);
+		} else if (pagesRemaining <= 0) {
+			return <></>;
 		} else {
 			return (
 				<>
@@ -80,10 +82,24 @@ export default function Pagination() {
 
 	return (
 		<div className="flex items-center justify-between bg-white px-4 py-3 sm:px-6">
+
+			{/* mobile controls */}
 		  <div className="flex flex-1 justify-between sm:hidden">
-		    <a href="#" className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Previous</a>
-		    <a href="#" className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Next</a>
+		    <a 
+		    	href="#"
+		    	onClick={() => runSearch(data.currentPage > 1? data.currentPage - 1 : 1)}
+		    	className="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+		    		Previous
+		    </a>
+		    <a 
+		    	href="#"
+		    	onClick={() => runSearch(data.currentPage < data.numPages? data.currentPage + 1 : data.numPages)}
+		    	className="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">
+		    		Next
+		    </a>
 		  </div>
+
+		  {/* larger display controls */}
 		  <div className="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
 		    <div>
 		      <p className="text-sm text-gray-700">

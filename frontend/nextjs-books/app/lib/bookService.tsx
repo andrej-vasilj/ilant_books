@@ -9,6 +9,12 @@ class BookService {
 	search(query: string, startIndex: number = 0) {
 		console.log('Querying books for: ' + query);
 		console.log('Starting at entry: ' + startIndex);
+
+		if (query.length === 0) {
+			this.bookResults.next({isLoading: false, query, startIndex, items: []});
+			return;
+		}
+
 		this.bookResults.next({isLoading: true});
 		ajax.getJSON('http://0.0.0.0/search/?query_string=' + query + '&start_index=' + startIndex).subscribe({
 		  next: results => {
