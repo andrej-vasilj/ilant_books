@@ -1,11 +1,10 @@
-'use client';
-
-import Detail from '@/app/ui/detail';
-import { useSearchParams } from 'next/navigation';
+import DetailProvider from '@/app/ui/detailProvider';
+import { Suspense } from "react";
  
 export default function Page() {
-  const searchParams = useSearchParams()
   return (
-  	<Detail bookId={searchParams.get('bookId')}/>
+  	<Suspense>
+  		<DetailProvider/>
+  	</Suspense>
   );
 }
