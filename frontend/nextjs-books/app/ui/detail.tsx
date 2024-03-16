@@ -6,21 +6,21 @@ import { ArrowLeftIcon } from '@heroicons/react/24/outline';
 import bookService, { Book } from '@/app/lib/bookService';
 import { useState, useEffect } from 'react';
 
-export default function Detail({ params }: { params: { id: string } }) {
+export default function Detail({ bookId }: { bookId: string }) {
 
 	const [book, setBook] = useState<Book>({});
 
 	useEffect(() => {
 		const subscription = bookService.bookResults.subscribe((results: any) => {
 			if (results?.items?.length > 0) {
-				const book = results.items.find((b: Book) => b.id === params.id);
+				const book = results.items.find((b: Book) => b.id === bookId);
 				setBook(book || {});
 			}
 		});
 
 		// Clean up the subscription on component unmount
     	return () => {subscription.unsubscribe();};	
-	}, [params.id]);
+	}, [bookId]);
 
 	return (
 		<main className="flex min-h-screen flex-col items-center justify-between p-2">
