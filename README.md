@@ -24,6 +24,10 @@ The front-end is a Next.js application styled using TailwindCSS.
 5. If this succeeds you should be able to access the documentation by visiting the following link in your browser  
 [localhost/docs](http://0.0.0.0/docs).
 
+##### Unit tests
+To execute the unit tests, first build the Docker container and then run it with the following command  
+`docker run --name ibooks ilant_books pytest`
+
 #### Front-end
 
 1. Ensure that you have Node.js and NPM installed on your system

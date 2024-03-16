@@ -1,18 +1,19 @@
-import responses
+import pytest
+from httpx import AsyncClient
 from .main import app, API_KEY, GOOGLE_URL
-from fastapi.testclient import TestClient
 
-client = TestClient(app)
 
-@responses.activate  
-def test_search():
-	responses.add(**{
-      'method'         : responses.GET,
-      'url'            : f'{GOOGLE_URL}?q=stuff&startIndex=0&key={API_KEY}',
-      'body'           : '{"msg": "Mock response message"}',
-      'status'         : 200,
-      'content_type'   : 'application/json',
-    })
-	response = client.get("/search/?query_string=stuff")
-	assert response.status_code == 200
-	assert response.json() == {"msg": "Mock response message"}
+@pytest.mark.asyncio
+async def test_search(httpx_mock):
+    # Stub out the downstream call to Google API
+    url = f'{GOOGLE_URL}?q=stuff&startIndex=0&key={API_KEY}'
+    payload = {'totalItems': 100}
+    httpx_mock.add_response(url, json=payload)
+
+    # Call our search API
+    async with AsyncClient(app=app) as client:
+        response = await client.get("https://localhost/api/search/?query_string=stuff&start_index=0")
+
+    # Ensure we get back what we expect
+    assert response.status_code == 200
+    assert response.json() == payload
