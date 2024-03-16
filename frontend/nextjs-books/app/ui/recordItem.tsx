@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from 'next/link';
+import { Book } from '@/app/lib/bookService';
 
-export default function RecordItem({book}) {
+export default function RecordItem({ book }: { book: Book }) {
 	const authors = book.volumeInfo?.authors || [];
 	const tn = book.volumeInfo?.imageLinks?.smallThumbnail;
 

@@ -3,17 +3,17 @@
 import Image from "next/image";
 import Link from 'next/link';
 import { ArrowLeftIcon } from '@heroicons/react/24/outline';
-import bookService from '@/app/lib/bookService';
+import bookService, { Book } from '@/app/lib/bookService';
 import { useState, useEffect } from 'react';
 
 export default function Detail({ params }: { params: { id: string } }) {
 
-	const [book, setBook] = useState({});
+	const [book, setBook] = useState<Book>({});
 
 	useEffect(() => {
-		const subscription = bookService.bookResults.subscribe((results) => {
+		const subscription = bookService.bookResults.subscribe((results: any) => {
 			if (results?.items?.length > 0) {
-				const book = results.items.find(b => b.id === params.id);
+				const book = results.items.find((b: Book) => b.id === params.id);
 				setBook(book || {});
 			}
 		});

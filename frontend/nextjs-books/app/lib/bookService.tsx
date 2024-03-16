@@ -2,9 +2,23 @@ import { ReplaySubject } from 'rxjs';
 import { ajax } from 'rxjs/ajax';
 import { map, catchError, of } from 'rxjs';
 
+export type Book = {
+    id?: string;
+    volumeInfo?: {
+    	title: string,
+    	authors: [string],
+    	publishedDate: string,
+    	description: string,
+    	imageLinks: {
+    		thumbnail: string,
+    		smallThumbnail: string,
+    	}
+    }
+};
+
 
 class BookService {
-	bookResults: ReplaySubject = new ReplaySubject();
+	bookResults: ReplaySubject<any> = new ReplaySubject();
 
 	search(query: string, startIndex: number = 0) {
 		console.log('Querying books for: ' + query);
@@ -19,7 +33,7 @@ class BookService {
 
 		ajax.getJSON(process.env.BASE_URL + '/search/?query_string=' + query + '&start_index=' + startIndex).subscribe({
 		  next: results => {
-		  	this.bookResults.next({isLoading: false, query, startIndex, ...results});
+		  	this.bookResults.next({isLoading: false, query, startIndex, ...(results as object)});
 		  },
 		  error: err => {
 		  	console.log(err);

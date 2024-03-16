@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
-import bookService from '@/app/lib/bookService';
+import bookService, { Book } from '@/app/lib/bookService';
 import RecordItem from '@/app/ui/recordItem';
 import LoadingSpinner from '@/app/ui/loadingSpinner';
 import Pagination from '@/app/ui/pagination';
 
 export default function Records() {
 
-	const [data, setData] = useState({isLoading: false, items: []});
+	const [data, setData] = useState<any>({isLoading: false, items: []});
   const [isLoading, setLoading] = useState(false);
  
 	useEffect(() => {
-		const subscription = bookService.bookResults.subscribe((results) => {
+		const subscription = bookService.bookResults.subscribe((results: any) => {
 			setLoading(results?.isLoading || false);
 			setData(results);
 	  });
@@ -30,7 +30,7 @@ export default function Records() {
 			else
 				return (
 					<ul role="list" className="divide-y divide-rich-green">
-			    	{data?.items.map(item => <RecordItem key={item.id} book={item}/>)}
+			    	{data?.items.map((item: Book) => <RecordItem key={item.id} book={item}/>)}
 		    	</ul>
 				);
 		}

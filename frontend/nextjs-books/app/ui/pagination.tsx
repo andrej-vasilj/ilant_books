@@ -40,7 +40,7 @@ export default function Pagination() {
     return () => {subscription.unsubscribe();};	
 	}, []);
 
-	const runSearch = (desiredPage) => {
+	const runSearch = (desiredPage: number) => {
 		bookService.search(data.query, (desiredPage - 1) * data.itemsPerPage);
 	}
 
@@ -71,9 +71,9 @@ export default function Pagination() {
 				<>
 					{Array(pagesRemaining).fill(1).map((itm, i) => {
 						if (i === 0)
-							return <a href="#" className={sharedClasses + currentPageClasses}>{cp}</a>
+							return <a href="#" key={'paginate-' + cp} className={sharedClasses + currentPageClasses}>{cp}</a>
 						else
-							return <a href="#" className={sharedClasses + otherPageClasses}>{cp + i}</a>
+							return <a href="#" key={'paginate-' + cp+i} className={sharedClasses + otherPageClasses}>{cp + i}</a>
 					})}
 			  </>
 			);
