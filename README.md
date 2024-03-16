@@ -4,7 +4,7 @@
 
 Brought to you by the Ilant Health team, this application offers users the ability to query the Google Books API and display results using an
 intuitive and visually appealing interface. You can use this repository to deploy your own instance of this application or simply visit the
-following [link](https://duckduckgo.com) to get started immediately!
+following [link](https://ilantbooks.initializedsoul.com/) to get started immediately!
 
 ### Technology
 
@@ -31,3 +31,12 @@ The front-end is a Next.js application styled using TailwindCSS.
 3. In a terminal, execute `npm i` to install all of the project requirements
 4. Execute `npm run dev` to run the development server to serve the files locally
 5. At this point you should be able to access the application at [localhost:3000](http://0.0.0.0:3000)
+
+In order to build static assets for remote deployment one may simply execute `npm run build` and the
+static files will be available in the 'out' directory.
+
+### Known issues
+
+1. Pagination does not currently work well due to a bug in the Google Books API itself! The problem is that every time
+the startIndex is incremented to get the subsequent entries, the number of totalItems returned by the Google API response keeps
+incrementing substantially (by thousands of entries). There is a [StackOverflow link](https://stackoverflow.com/questions/76799691/google-books-api-erroneously-incrementing-totalitems-returned/78161879#78161879) for this issue.
