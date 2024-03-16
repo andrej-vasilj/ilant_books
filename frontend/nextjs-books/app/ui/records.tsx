@@ -3,8 +3,13 @@ import bookService, { Book } from '@/app/lib/bookService';
 import RecordItem from '@/app/ui/recordItem';
 import LoadingSpinner from '@/app/ui/loadingSpinner';
 import Pagination from '@/app/ui/pagination';
+import Detail from '@/app/ui/detail';
+import { useSearchParams } from 'next/navigation';
 
 export default function Records() {
+
+	const searchParams = useSearchParams();
+	const bookId = searchParams.get('bookId');
 
 	const [data, setData] = useState<any>({isLoading: false, items: []});
   const [isLoading, setLoading] = useState(false);
@@ -38,12 +43,15 @@ export default function Records() {
 
 	return (
 		<div className="min-h-full min-w-full">
-			<div className="w-full mx-auto rounded-xl shadow-md p-5 border-2 border-rich-green bg-white">
-				<Pagination/>
-			  <div className="md:flex bg-white">
-			  	{ getState() }
-			  </div>
-			</div>
+			{!!bookId && <Detail bookId={bookId}/>}
+			{!bookId && (
+				<div className="w-full mx-auto rounded-xl shadow-md p-5 border-2 border-rich-green bg-white">
+					<Pagination/>
+				  <div className="md:flex bg-white">
+				  	{ getState() }
+				  </div>
+				</div>
+			)}
 		</div>
 	);
 }

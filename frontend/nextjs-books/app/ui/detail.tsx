@@ -27,7 +27,7 @@ export default function Detail({ bookId }: { bookId: string }) {
 	      <div className="w-full max-w-6xl h-full mx-auto rounded-xl shadow-md p-5 border-2 border-rich-green bg-white">
 
 	      	<Link key="home" href="/" className="float-left">
-	      		<button type="button" className="bg-dark-green p-2 rounded-xl shadow-md">
+	      		<button type="button" className="bg-dark-green p-2 rounded-xl shadow-md flex items-center">
 			    		<ArrowLeftIcon className="h-[25px] w-[25px] float-left mr-2 text-white" /> <span className="font-bold text-white"> Back </span>
 			    	</button>
 			    </Link>

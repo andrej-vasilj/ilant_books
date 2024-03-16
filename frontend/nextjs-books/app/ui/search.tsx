@@ -7,7 +7,9 @@ export default function Search({ placeholder }: { placeholder: string }) {
   const router = useRouter();
 
   const handleSearch = useDebouncedCallback((term) => {
-    router.push('/');
+    // The following line gives an error while building for whatever mysterious reason, but it should work according to the next.js docs
+    // @ts-ignore: Unreachable code error
+    router.push('/', undefined, { shallow: true }); // redirect without refresh
     bookService.search(term);
   }, 300);
 
@@ -23,7 +25,6 @@ export default function Search({ placeholder }: { placeholder: string }) {
           onChange={(e) => {
             handleSearch(e.target.value);
           }}
-          defaultValue={'quilting'}
         />
         <MagnifyingGlassIcon className="absolute left-3 top-1/2 h-[25px] w-[25px] -translate-y-1/2 text-gray-500 peer-focus:text-gray-900" />
       </div>

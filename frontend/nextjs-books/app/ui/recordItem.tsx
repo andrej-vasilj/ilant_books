@@ -11,7 +11,7 @@ export default function RecordItem({ book }: { book: Book }) {
 	    <div className="w-full">
 	    	<Link
 		      key={book.id}
-		      href={{ pathname: `/book`, query: { bookId: book.id } }}
+		      href={{ pathname: `/`, query: { bookId: book.id } }}
 		      className="flex min-w-0 w-full gap-x-4"
 		    >
 		    	<Image
